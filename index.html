@@ -20,11 +20,7 @@
             --border-color: #dadce0;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Roboto', sans-serif;
@@ -59,24 +55,22 @@
             gap: 10px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 15px; }
 
         label {
             display: block;
             font-weight: 500;
-            margin-bottom: 8px;
-            font-size: 14px;
+            margin-bottom: 6px;
+            font-size: 13px;
             color: #5f6368;
         }
 
         input[type="text"], select {
             width: 100%;
-            padding: 10px 12px;
+            padding: 10px;
             border: 1px solid var(--border-color);
             border-radius: 4px;
-            font-size: 15px;
+            font-size: 14px;
             transition: border-color 0.2s;
         }
 
@@ -95,7 +89,8 @@
             font-weight: 500;
             border-radius: 4px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 15px;
+            margin-bottom: 30px;
             transition: background-color 0.2s;
             display: flex;
             justify-content: center;
@@ -103,9 +98,7 @@
             gap: 10px;
         }
 
-        .btn-generate:hover {
-            background-color: #1557b0;
-        }
+        .btn-generate:hover { background-color: #1557b0; }
 
         /* ÁREA DO RELATÓRIO (DIREITA) */
         #report-view {
@@ -120,7 +113,7 @@
         .page-canvas {
             background-color: #fff;
             width: 800px;
-            min-height: 1050px;
+            min-height: 1120px;
             padding: 60px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             position: relative;
@@ -134,12 +127,12 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--gray-light);
-            padding-bottom: 20px;
-            margin-bottom: 40px;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
         }
 
         .google-logo {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 500;
             letter-spacing: -1px;
         }
@@ -154,21 +147,21 @@
             padding: 6px 12px;
             border-radius: 20px;
             font-weight: 500;
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
         }
 
         .doc-title {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--gray-dark);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .company-name-display {
-            font-size: 22px;
+            font-size: 20px;
             color: #5f6368;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border-left: 4px solid var(--google-blue);
             padding-left: 15px;
         }
@@ -177,41 +170,29 @@
         .score-box {
             background: var(--gray-light);
             border-radius: 8px;
-            padding: 30px;
+            padding: 20px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border: 1px solid var(--border-color);
         }
 
-        .score-info h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .score-info p {
-            color: #5f6368;
-            font-size: 15px;
-        }
-
-        .score-number {
-            font-size: 64px;
-            font-weight: 700;
-            line-height: 1;
-        }
+        .score-info h3 { font-size: 18px; margin-bottom: 5px; }
+        .score-info p { color: #5f6368; font-size: 14px; }
+        .score-number { font-size: 55px; font-weight: 700; line-height: 1; }
 
         /* CHECKLIST INTERATIVO DE RESULTADOS */
         .criterion-row {
             display: flex;
             align-items: flex-start;
-            padding: 20px 0;
+            padding: 15px 0;
             border-bottom: 1px solid #eee;
         }
 
         .criterion-status {
-            margin-right: 20px;
-            font-size: 24px;
+            margin-right: 18px;
+            font-size: 22px;
             margin-top: 2px;
         }
 
@@ -220,13 +201,13 @@
         .status-fail { color: var(--google-red); }
 
         .criterion-text h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
+            font-size: 16px;
+            margin-bottom: 4px;
             color: var(--gray-dark);
         }
 
         .criterion-text p {
-            font-size: 15px;
+            font-size: 14px;
             color: #5f6368;
             line-height: 1.4;
         }
@@ -234,63 +215,43 @@
         /* VEREDITO ADAPTATIVO */
         .veredict-box {
             margin-top: auto;
-            padding: 25px;
+            padding: 20px;
             border-radius: 6px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
-        .v-critical { background-color: rgba(234, 67, 53, 0.1); border-left: 5px solid var(--google-red); }
-        .v-alert { background-color: rgba(251, 188, 5, 0.15); border-left: 5px solid var(--google-yellow); }
-        .v-good { background-color: rgba(52, 168, 83, 0.1); border-left: 5px solid var(--google-green); }
+        .v-critical { background-color: rgba(234, 67, 53, 0.08); border-left: 5px solid var(--google-red); }
+        .v-alert { background-color: rgba(251, 188, 5, 0.12); border-left: 5px solid var(--google-yellow); }
+        .v-good { background-color: rgba(52, 168, 83, 0.08); border-left: 5px solid var(--google-green); }
 
-        .veredict-box h4 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
+        .veredict-box h4 { font-size: 17px; margin-bottom: 8px; }
+        .veredict-box p { font-size: 14px; line-height: 1.5; color: #3c4043; }
 
         /* FOOTER DE ASSINATURA */
         .footer-signature {
             border-top: 1px solid var(--border-color);
-            padding-top: 20px;
+            padding-top: 15px;
             display: flex;
             justify-content: space-between;
-            font-size: 14px;
+            font-size: 13px;
             color: #70757a;
         }
 
-        .footer-signature strong {
-            color: var(--gray-dark);
-        }
+        .footer-signature strong { color: var(--gray-dark); }
 
-        /* CONFIGURAÇÃO DE IMPRESSÃO (REMOVE PAINEL E AJUSTA MARGENS) */
+        /* CONFIGURAÇÃO DE IMPRESSÃO */
         @media print {
-            body {
-                background-color: #fff;
-            }
-            #control-panel {
-                display: none;
-            }
-            #report-view {
-                margin-left: 0;
-                padding: 0;
-                background-color: #fff;
-            }
-            .page-canvas {
-                box-shadow: none;
-                padding: 0;
-                width: 100%;
-                height: auto;
-            }
-            @page {
-                size: A4;
-                margin: 20mm;
-            }
+            body { background-color: #fff; }
+            #control-panel { display: none; }
+            #report-view { margin-left: 0; padding: 0; background-color: #fff; width: 100%; display: block; }
+            .page-canvas { box-shadow: none; padding: 0; width: 100%; height: auto; min-height: auto; }
+            @page { size: A4; margin: 15mm; }
         }
     </style>
 </head>
 <body>
 
     <div id="control-panel">
-        <h2 class="panel-title"><i class="fa-solid fa-sliders"></i> Configurar Diagnóstico</h2>
+        <h2 class="panel-title"><i class="fa-solid fa-sliders"></i> Configurar Ficha</h2>
         
         <div class="form-group">
             <label for="companyName">Nome da Empresa</label>
@@ -298,46 +259,67 @@
         </div>
 
         <div class="form-group">
-            <label for="p-site">1. Infraestrutura Web & SEO</label>
+            <label for="p-site">1. Infraestrutura Web & SEO (20%)</label>
             <select id="p-site" onchange="updateReport()">
-                <option value="30">Site Próprio Otimizado (+30 pts)</option>
+                <option value="20">Site Próprio Otimizado (+20 pts)</option>
                 <option value="10">Apenas link de Agendamento (+10 pts)</option>
                 <option value="0">Nenhum Link na Ficha (0 pts)</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="p-reviews">2. Volume de Avaliações</label>
+            <label for="p-whats">2. Facilidade de Contato (10%)</label>
+            <select id="p-whats" onchange="updateReport()">
+                <option value="10">Link direto para WhatsApp/Chat (+10 pts)</option>
+                <option value="5">Telefone anotável sem link direto (+5 pts)</option>
+                <option value="0">Sem contato claro (0 pts)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="p-stars">3. Média de Estrelas (15%)</label>
+            <select id="p-stars" onchange="updateReport()">
+                <option value="15">Entre 4.8 e 5.0 Estrelas (+15 pts)</option>
+                <option value="10">Entre 4.5 e 4.7 Estrelas (+10 pts)</option>
+                <option value="5">Entre 4.0 e 4.4 Estrelas (+5 pts)</option>
+                <option value="0">Abaixo de 4.0 Estrelas (0 pts)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="p-reviews">4. Volume de Avaliações (15%)</label>
             <select id="p-reviews" onchange="updateReport()">
-                <option value="20">Mais de 200 avaliações (+20 pts)</option>
-                <option value="15">Entre 100 e 200 avaliações (+15 pts)</option>
-                <option value="10">Entre 50 e 100 avaliações (+10 pts)</option>
+                <option value="15">Mais de 200 avaliações (+15 pts)</option>
+                <option value="10">Entre 100 e 200 avaliações (+10 pts)</option>
+                <option value="5">Entre 50 e 100 avaliações (+5 pts)</option>
                 <option value="0">Menos de 50 avaliações (0 pts)</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="p-responses">3. Resposta às Avaliações</label>
+            <label for="p-responses">5. Resposta às Avaliações (15%)</label>
             <select id="p-responses" onchange="updateReport()">
-                <option value="15">Responde a todos com Palavras-chave (+15 pts)</option>
+                <option value="15">Responde todas com Palavras-chave (+15 pts)</option>
+                <option value="10">Responde a maioria, mas não todas (+10 pts)</option>
                 <option value="5">Respostas Genéricas / Só Estrelas (+5 pts)</option>
-                <option value="0">Não Responde ou Ignora (+0 pts)</option>
+                <option value="0">Não Responde (0 pts)</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="p-visual">4. Experiência Visual & Tour 360°</label>
+            <label for="p-visual">6. Experiência Visual & 360° (15%)</label>
             <select id="p-visual" onchange="updateReport()">
-                <option value="20">Fotos Recentes + Tour Virtual 360° (+20 pts)</option>
+                <option value="15">Fotos Recentes + Tour Virtual 360° (+15 pts)</option>
+                <option value="10">Possui Fotos 360°, mas sem Tour interativo (+10 pts)</option>
                 <option value="5">Apenas Fotos Padrão e Antigas (+5 pts)</option>
-                <option value="0">Sem Fotos / Imagens Ruins (+0 pts)</option>
+                <option value="0">Sem Fotos / Imagens Ruins (0 pts)</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="p-posts">5. Frequência de Postagens</label>
+            <label for="p-posts">7. Frequência de Postagens (10%)</label>
             <select id="p-posts" onchange="updateReport()">
-                <option value="15">Atualizações nos últimos 15 dias (+15 pts)</option>
+                <option value="10">Atualizações nos últimos 15 dias (+10 pts)</option>
                 <option value="0">Sem postagens recentes (0 pts)</option>
             </select>
         </div>
@@ -355,7 +337,7 @@
                     <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
                     <span style="font-family:'Product Sans', sans-serif; color:#5f6368; font-size:22px; margin-left:5px;">Business Profile</span>
                 </div>
-                <div class="report-tag">Análise Estratégica</div>
+                <div class="report-tag">Auditoria Técnica de Perfil</div>
             </div>
 
             <h1 class="doc-title">Relatório de Desempenho Local</h1>
@@ -363,8 +345,8 @@
 
             <div class="score-box">
                 <div class="score-info">
-                    <h3>Saúde e Otimização da Ficha</h3>
-                    <p>Mapeamento de posicionamento orgânico e conversão.</p>
+                    <h3>Índice de Otimização e Conversão</h3>
+                    <p>Análise de posicionamento orgânico frente aos concorrentes locais.</p>
                 </div>
                 <div class="score-number" id="display-score">0%</div>
             </div>
@@ -372,15 +354,31 @@
             <div class="criterion-row">
                 <div class="criterion-status" id="icon-site"></div>
                 <div class="criterion-text">
-                    <h4>Infraestrutura Web & Autoridade de Domínio</h4>
+                    <h4>1. Infraestrutura Web & SEO Local</h4>
                     <p id="desc-site"></p>
+                </div>
+            </div>
+
+            <div class="criterion-row">
+                <div class="criterion-status" id="icon-whats"></div>
+                <div class="criterion-text">
+                    <h4>2. Facilidade de Contato (UX)</h4>
+                    <p id="desc-whats"></p>
+                </div>
+            </div>
+
+            <div class="criterion-row">
+                <div class="criterion-status" id="icon-stars"></div>
+                <div class="criterion-text">
+                    <h4>3. Média de Qualidade (Estrelas)</h4>
+                    <p id="desc-stars"></p>
                 </div>
             </div>
 
             <div class="criterion-row">
                 <div class="criterion-status" id="icon-reviews"></div>
                 <div class="criterion-text">
-                    <h4>Atração & Volume de Prova Social</h4>
+                    <h4>4. Prova Social (Volume)</h4>
                     <p id="desc-reviews"></p>
                 </div>
             </div>
@@ -388,7 +386,7 @@
             <div class="criterion-row">
                 <div class="criterion-status" id="icon-responses"></div>
                 <div class="criterion-text">
-                    <h4>Retenção & SEO em Respostas</h4>
+                    <h4>5. Retenção & Respostas</h4>
                     <p id="desc-responses"></p>
                 </div>
             </div>
@@ -396,7 +394,7 @@
             <div class="criterion-row">
                 <div class="criterion-status" id="icon-visual"></div>
                 <div class="criterion-text">
-                    <h4>Experiência Visual Imersiva (Tour Virtual 360°)</h4>
+                    <h4>6. Experiência Visual Imersiva</h4>
                     <p id="desc-visual"></p>
                 </div>
             </div>
@@ -404,7 +402,7 @@
             <div class="criterion-row">
                 <div class="criterion-status" id="icon-posts"></div>
                 <div class="criterion-text">
-                    <h4>Relevância e Atividade Algorítmica</h4>
+                    <h4>7. Atividade Algorítmica</h4>
                     <p id="desc-posts"></p>
                 </div>
             </div>
@@ -415,8 +413,8 @@
             </div>
 
             <div class="footer-signature">
-                <div>Emitido por: <strong>PapodeAlcance</strong></div>
-                <div>Contato Comercial WhatsApp: <strong>+55 41 99816-1160</strong></div>
+                <div>Consultoria SEO Local: <strong>PapodeAlcance</strong></div>
+                <div>Contato Direto (WhatsApp): <strong>+55 41 99816-1160</strong></div>
             </div>
 
         </div>
@@ -424,115 +422,153 @@
 
     <script>
         function updateReport() {
-            // Pegar valores do input
+            // Pegar valores
             const name = document.getElementById('companyName').value;
             const siteScore = parseInt(document.getElementById('p-site').value);
+            const whatsScore = parseInt(document.getElementById('p-whats').value);
+            const starsScore = parseInt(document.getElementById('p-stars').value);
             const reviewsScore = parseInt(document.getElementById('p-reviews').value);
             const responsesScore = parseInt(document.getElementById('p-responses').value);
             const visualScore = parseInt(document.getElementById('p-visual').value);
             const postsScore = parseInt(document.getElementById('p-posts').value);
 
-            // Calcular Nota Total
-            const totalScore = siteScore + reviewsScore + responsesScore + visualScore + postsScore;
+            // Calcular Total
+            const totalScore = siteScore + whatsScore + starsScore + reviewsScore + responsesScore + visualScore + postsScore;
 
-            // Atualizar elementos textuais simples
+            // Atualizar Score Visual
             document.getElementById('display-company-name').innerText = name;
             document.getElementById('display-score').innerText = totalScore + '%';
 
-            // Customizar cores do placar com base na nota
             const scoreDisplay = document.getElementById('display-score');
-            if(totalScore < 40) scoreDisplay.style.color = 'var(--google-red)';
-            else if(totalScore <= 70) scoreDisplay.style.color = 'var(--google-yellow)';
+            if(totalScore < 50) scoreDisplay.style.color = 'var(--google-red)';
+            else if(totalScore <= 80) scoreDisplay.style.color = 'var(--google-yellow)';
             else scoreDisplay.style.color = 'var(--google-green)';
 
-            // 1. Logica do Site
+            // 1. Logica do Site (20 pts)
             const iconSite = document.getElementById('icon-site');
             const descSite = document.getElementById('desc-site');
-            if(siteScore === 30) {
+            if(siteScore === 20) {
                 iconSite.className = "criterion-status fa-solid fa-circle-check status-pass";
-                descSite.innerText = "Excelente. O link direciona para um site próprio otimizado com palavras-chave geo-localizadas, permitindo que o robô do Google faça a leitura completa e indexe o estabelecimento no topo das buscas regionais.";
+                descSite.innerText = "Excelente. O link direciona para um site próprio otimizado com palavras-chave geo-localizadas, permitindo indexação avançada no topo das buscas regionais.";
             } else if(siteScore === 10) {
                 iconSite.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
-                descSite.innerText = "Alerta Técnico. A ficha utiliza apenas link de plataformas de terceiros (Agendadores). Embora seja prático para quem já conhece o negócio, para o algoritmo do Google possui peso zero de SEO, fazendo com que a empresa perca relevância para quem busca o serviço no bairro.";
+                descSite.innerText = "Alerta Técnico. O uso exclusivo de links de agendadores (Booksy, etc.) anula o SEO do Google, fazendo a empresa perder relevância orgânica na captação de clientes que buscam pelo serviço genérico no bairro.";
             } else {
                 iconSite.className = "criterion-status fa-solid fa-circle-xmark status-fail";
-                descSite.innerText = "Crítico. A ausência de um link na ficha remove um dos principais pontos de ancoragem de autoridade do Google, gerando perda imediata de posições no ranking para concorrentes diretos.";
+                descSite.innerText = "Crítico. A ausência de link remove o principal pilar de autoridade técnica exigido pelo Google.";
             }
 
-            // 2. Logica de Avaliações
+            // 2. Lógica do WhatsApp (10 pts)
+            const iconWhats = document.getElementById('icon-whats');
+            const descWhats = document.getElementById('desc-whats');
+            if(whatsScore === 10) {
+                iconWhats.className = "criterion-status fa-solid fa-circle-check status-pass";
+                descWhats.innerText = "Conversão sem atrito. O cliente consegue acessar o canal direto de mensagens (WhatsApp) com apenas 1 clique, maximizando o agendamento imediato.";
+            } else if(whatsScore === 5) {
+                iconWhats.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
+                descWhats.innerText = "Atrito no Contato. O cliente é forçado a copiar, colar e salvar o número na agenda para conseguir se comunicar, o que gera uma alta taxa de abandono (clientes que desistem e procuram o concorrente).";
+            } else {
+                iconWhats.className = "criterion-status fa-solid fa-circle-xmark status-fail";
+                descWhats.innerText = "Incomunicável. Falha crítica nos canais rápidos de atendimento na ficha.";
+            }
+
+            // 3. Lógica das Estrelas (15 pts)
+            const iconStars = document.getElementById('icon-stars');
+            const descStars = document.getElementById('desc-stars');
+            if(starsScore === 15) {
+                iconStars.className = "criterion-status fa-solid fa-circle-check status-pass";
+                descStars.innerText = "Reputação de Excelência. A média atual posiciona a empresa como uma das escolhas mais seguras da região.";
+            } else if(starsScore === 10) {
+                iconStars.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
+                descStars.innerText = "Boa reputação geral, porém a média apresenta pequenas margens para melhora e pode ser facilmente ultrapassada por um concorrente direto focado em excelência.";
+            } else if(starsScore === 5) {
+                iconStars.className = "criterion-status fa-solid fa-circle-xmark status-fail";
+                descStars.innerText = "Alerta de Qualidade. Clientes locais desconfiam de médias próximas a 4.0, reduzindo o tráfego presencial.";
+            } else {
+                iconStars.className = "criterion-status fa-solid fa-circle-xmark status-fail";
+                descStars.innerText = "Risco de Rejeição. Uma média abaixo de 4.0 afasta ativamente novos clientes e demanda plano de ação emergencial de Customer Success.";
+            }
+
+            // 4. Lógica de Avaliações (Volume) (15 pts)
             const iconReviews = document.getElementById('icon-reviews');
             const descReviews = document.getElementById('desc-reviews');
-            if(reviewsScore === 20) {
+            if(reviewsScore === 15) {
                 iconReviews.className = "criterion-status fa-solid fa-circle-check status-pass";
-                descReviews.innerText = "Ficha Consolidada. Volume superior a 200 avaliações constrói uma barreira psicológica robusta de confiança contra a concorrência e acelera a conversão de novos usuários.";
-            } else if(reviewsScore === 15 || reviewsScore === 10) {
+                descReviews.innerText = "Ficha Consolidada. Alto volume constrói uma barreira psicológica robusta de confiança.";
+            } else if(reviewsScore >= 5) {
                 iconReviews.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
-                descReviews.innerText = "Volume Intermediário. O estabelecimento possui tração, porém permanece vulnerável ao crescimento acelerado de concorrentes vizinhos. Necessita de estratégia ativa de coleta de feedbacks.";
+                descReviews.innerText = "Volume Intermediário. O negócio necessita de uma estratégia ativa de coleta de feedbacks para não ficar vulnerável a concorrentes.";
             } else {
                 iconReviews.className = "criterion-status fa-solid fa-circle-xmark status-fail";
-                descReviews.innerText = "Alerta de Confiança. Menos de 50 avaliações enquadra o perfil em uma zona de risco onde o consumidor tende a escolher concorrentes com maior prova social documentada.";
+                descReviews.innerText = "Baixa Tração. O baixo número de avaliações falha em transmitir a autoridade necessária para atrair novos visitantes do mapa.";
             }
 
-            // 3. Logica de Respostas
+            // 5. Lógica de Respostas (15 pts)
             const iconResponses = document.getElementById('icon-responses');
             const descResponses = document.getElementById('desc-responses');
             if(responsesScore === 15) {
                 iconResponses.className = "criterion-status fa-solid fa-circle-check status-pass";
-                descResponses.innerText = "SEO Avançado. As respostas utilizam palavras-chave estratégicas combinadas com o nome da localidade, alimentando a inteligência de busca orgânica do mapa.";
+                descResponses.innerText = "SEO Avançado. As respostas utilizam palavras-chave geolocalizadas, alimentando o algoritmo.";
+            } else if(responsesScore === 10) {
+                iconResponses.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
+                descResponses.innerText = "Frequência Inconsistente. Responder apenas algumas avaliações e ignorar outras transmite uma percepção de descaso no atendimento pós-venda visualizado publicamente.";
             } else if(responsesScore === 5) {
                 iconResponses.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
-                descResponses.innerText = "Oportunidade de Melhoria. Interações automáticas ou sem textos estratégicos perdem a oportunidade perfeita de introduzir palavras-chave que fariam a ficha subir de posição gratuitamente.";
+                descResponses.innerText = "Perda de Oportunidade. Respostas automáticas ou genéricas falham em inserir palavras-chave para o ranqueamento orgânico.";
             } else {
                 iconResponses.className = "criterion-status fa-solid fa-circle-xmark status-fail";
-                descResponses.innerText = "Abandono Comercial. Avaliações ignoradas ou sem respostas geram sinalização negativa tanto para novos clientes quanto para a frequência de entrega do algoritmo do Google.";
+                descResponses.innerText = "Abandono. Ignorar o feedback do cliente é penalizado pelo algoritmo do Google e destrói o engajamento.";
             }
 
-            // 4. Logica Visual
+            // 6. Lógica Visual 360 (15 pts)
             const iconVisual = document.getElementById('icon-visual');
             const descVisual = document.getElementById('desc-visual');
-            if(visualScore === 20) {
+            if(visualScore === 15) {
                 iconVisual.className = "criterion-status fa-solid fa-circle-check status-pass";
-                descVisual.innerText = "Destaque Visual. A inclusão de imagens atualizadas e o Tour Virtual 360° aumentam o tempo de retenção do usuário na ficha, indicando ao Google que o espaço físico é legítimo, premium e confiável.";
+                descVisual.innerText = "Destaque Visual. A inclusão do Tour Virtual 360° integrado aumenta drasticamente o tempo de retenção do usuário na ficha, validando o negócio como premium perante o Google.";
+            } else if(visualScore === 10) {
+                iconVisual.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
+                descVisual.innerText = "Experiência Imersiva Parcial. A ficha possui fotos 360°, contudo, a ausência da costura e montagem do 'Tour Virtual' prejudica a navegação fluida do cliente pelo ambiente interno.";
             } else if(visualScore === 5) {
                 iconVisual.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
-                descVisual.innerText = "Imagens Comuns. O perfil exibe apenas fotos antigas ou amadoras. A falta de fotos profissionais e de um Tour 360° impede o cliente de experienciar o ambiente interno antes de ir ao local.";
+                descVisual.innerText = "Imagens Comuns. O perfil não dispõe de captação 360° interativa, entregando uma experiência de vitrine inferior à de estabelecimentos modernos.";
             } else {
                 iconVisual.className = "criterion-status fa-solid fa-circle-xmark status-fail";
-                descVisual.innerText = "Falta de Atrativos. Perfil sem fotos de qualidade ou sem controle editorial do proprietário afasta o consumidor e derruba drasticamente a taxa de cliques para agendamento.";
+                descVisual.innerText = "Desatualização Crítica. Falta de apelo visual gera forte rejeição.";
             }
 
-            // 5. Logica de Posts
+            // 7. Lógica de Posts (10 pts)
             const iconPosts = document.getElementById('icon-posts');
             const descPosts = document.getElementById('desc-posts');
-            if(postsScore === 15) {
+            if(postsScore === 10) {
                 iconPosts.className = "criterion-status fa-solid fa-circle-check status-pass";
-                descPosts.innerText = "Perfil Ativo. Postagens constantes na aba de novidades informam ao algoritmo que a empresa está aberta, ativa e gerando conteúdo relevante atualizado.";
+                descPosts.innerText = "Perfil Ativo. Postagens recentes informam ao algoritmo que a empresa está operante e focada em novidades.";
             } else {
                 iconPosts.className = "criterion-status fa-solid fa-circle-xmark status-fail";
-                descPosts.innerText = "Ficha Inativa. A ausência de atualizações recentes faz com que o algoritmo dê preferência para fichas movimentadas na região, derrubando o alcance orgânico da empresa.";
+                descPosts.innerText = "Ficha Inativa. A aba de atualizações abandonada faz o Google priorizar fichas com maior frequência de postagem na mesma região.";
             }
 
-            // REGRA DO VEREDITO FINAL TEXTUAL
+            // REGRA DO VEREDITO FINAL
             const veredictBox = document.getElementById('veredict-container');
             const veredictTitle = document.getElementById('veredict-title');
             const veredictText = document.getElementById('veredict-text');
 
-            if(totalScore < 40) {
+            if(totalScore < 50) {
                 veredictBox.className = "veredict-box v-critical";
-                veredictTitle.innerText = "Diagnóstico: Saúde Crítica da Ficha (" + totalScore + "%)";
-                veredictText.innerText = "Atenção Corporativa. O perfil atual opera muito abaixo do potencial técnico ideal. A dependência de links de terceiros ou a falta de ativos estruturados como SEO em respostas e atualizações estão ocultando o negócio nas buscas. É necessária uma intervenção imediata para reestruturação técnica antes que o posicionamento na região seja totalmente dominado pela concorrência.";
-            } else if(totalScore <= 70) {
+                veredictTitle.innerText = "Diagnóstico: Operação Abaixo da Média (" + totalScore + "%)";
+                veredictText.innerText = "Alerta Estratégico. A presença digital do perfil encontra-se comprometida por falhas estruturais, como atritos de contato (falta de WhatsApp direto), ausência de SEO e falta de imersão visual (360°). Esta configuração sinaliza ao Google que o perfil não é relevante o suficiente, entregando a demanda orgânica de clientes da sua região diretamente nas mãos de seus concorrentes mais estruturados. Sugere-se uma intervenção profissional imediata.";
+            } else if(totalScore <= 80) {
                 veredictBox.className = "veredict-box v-alert";
-                veredictTitle.innerText = "Diagnóstico: Alerta de Otimização (" + totalScore + "%)";
-                veredictText.innerText = "Status Estável, porém Vulnerável. O negócio possui ótimos alicerces, mas esbarra em gargalos técnicos de conversão e SEO Local, como a falta de palavras-chave estruturadas em respostas ou a ausência de uma experiência imersiva em 360°. Pequenos ajustes estratégicos na ficha e a introdução de uma infraestrutura web correta serão suficientes para disparar o número de agendamentos diretos.";
+                veredictTitle.innerText = "Diagnóstico: Perfil com Potencial Retido (" + totalScore + "%)";
+                veredictText.innerText = "Status Estável, mas Vulnerável. O negócio possui tração, porém está perdendo vendas diárias devido a detalhes técnicos que quebram a experiência do cliente, como falta de Tour interativo, uso exclusivo de links de terceiros e respostas não otimizadas. Um ajuste técnico de SEO, estruturação de canais diretos e adequação de imagens colocarão a ficha em posição de destaque absoluto.";
             } else {
                 veredictBox.className = "veredict-box v-good";
-                veredictTitle.innerText = "Diagnóstico: Excelente Desempenho (" + totalScore + "%)";
-                veredictText.innerText = "Parabéns! A estrutura do perfil demonstra alto profissionalismo e conformidade com as boas práticas exigidas pelo Google Business Profile. O foco agora deve ser manter a consistência contínua e iniciar estratégias avançadas de escala para blindar o topo do ranking contra novos entrantes.";
+                veredictTitle.innerText = "Diagnóstico: Operação Otimizada (" + totalScore + "%)";
+                veredictText.innerText = "Excelente estruturação técnica! A empresa compreende as nuances do ecossistema Google, unindo prova social forte, infraestrutura otimizada e facilidade de contato via chat. A recomendação tática é focar na manutenção deste padrão e em estratégias de blindagem territorial para dificultar a chegada de novos concorrentes na busca.";
             }
         }
 
-        // Executar inicialização automática ao abrir a página
+        // Executar no carregamento
         window.onload = updateReport;
     </script>
 </body>
