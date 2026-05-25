@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Auditoria GBP - PapodeAlcance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Product+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --google-blue: #1a73e8;
+            --google-red: #ea4335;
+            --google-yellow: #fbbc05;
+            --google-green: #34a853;
+            --gray-dark: #202124;
+            --gray-light: #f8f9fa;
+            --border-color: #dadce0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e8eaed;
+            color: var(--gray-dark);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* PAINEL DE CONTROLE (ESQUERDO) */
+        #control-panel {
+            width: 450px;
+            background-color: #fff;
+            border-right: 1px solid var(--border-color);
+            padding: 30px;
+            overflow-y: auto;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 100;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        }
+
+        h2.panel-title {
+            font-family: 'Roboto', sans-serif;
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--google-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 15px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--google-blue);
+        }
+
+        .btn-generate {
+            width: 100%;
+            background-color: var(--google-blue);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-generate:hover {
+            background-color: #1557b0;
+        }
+
+        /* ÁREA DO RELATÓRIO (DIREITA) */
+        #report-view {
+            margin-left: 450px;
+            flex-grow: 1;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            background-color: #e8eaed;
+        }
+
+        .page-canvas {
+            background-color: #fff;
+            width: 800px;
+            min-height: 1050px;
+            padding: 60px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ELEMENTOS DO LAUDO GOOGLE STYLE */
+        .brand-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--gray-light);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .google-logo {
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: -1px;
+        }
+        .g-b { color: var(--google-blue); }
+        .g-r { color: var(--google-red); }
+        .g-y { color: var(--google-yellow); }
+        .g-g { color: var(--google-green); }
+
+        .report-tag {
+            background-color: rgba(26, 115, 232, 0.1);
+            color: var(--google-blue);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        .doc-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gray-dark);
+            margin-bottom: 10px;
+        }
+
+        .company-name-display {
+            font-size: 22px;
+            color: #5f6368;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--google-blue);
+            padding-left: 15px;
+        }
+
+        /* SCOREBOARD CIRCULAR / METRO */
+        .score-box {
+            background: var(--gray-light);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .score-info h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .score-info p {
+            color: #5f6368;
+            font-size: 15px;
+        }
+
+        .score-number {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* CHECKLIST INTERATIVO DE RESULTADOS */
+        .criterion-row {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .criterion-status {
+            margin-right: 20px;
+            font-size: 24px;
+            margin-top: 2px;
+        }
+
+        .status-pass { color: var(--google-green); }
+        .status-alert { color: var(--google-yellow); }
+        .status-fail { color: var(--google-red); }
+
+        .criterion-text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--gray-dark);
+        }
+
+        .criterion-text p {
+            font-size: 15px;
+            color: #5f6368;
+            line-height: 1.4;
+        }
+
+        /* VEREDITO ADAPTATIVO */
+        .veredict-box {
+            margin-top: auto;
+            padding: 25px;
+            border-radius: 6px;
+            margin-bottom: 40px;
+        }
+        .v-critical { background-color: rgba(234, 67, 53, 0.1); border-left: 5px solid var(--google-red); }
+        .v-alert { background-color: rgba(251, 188, 5, 0.15); border-left: 5px solid var(--google-yellow); }
+        .v-good { background-color: rgba(52, 168, 83, 0.1); border-left: 5px solid var(--google-green); }
+
+        .veredict-box h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        /* FOOTER DE ASSINATURA */
+        .footer-signature {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #70757a;
+        }
+
+        .footer-signature strong {
+            color: var(--gray-dark);
+        }
+
+        /* CONFIGURAÇÃO DE IMPRESSÃO (REMOVE PAINEL E AJUSTA MARGENS) */
+        @media print {
+            body {
+                background-color: #fff;
+            }
+            #control-panel {
+                display: none;
+            }
+            #report-view {
+                margin-left: 0;
+                padding: 0;
+                background-color: #fff;
+            }
+            .page-canvas {
+                box-shadow: none;
+                padding: 0;
+                width: 100%;
+                height: auto;
+            }
+            @page {
+                size: A4;
+                margin: 20mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="control-panel">
+        <h2 class="panel-title"><i class="fa-solid fa-sliders"></i> Configurar Diagnóstico</h2>
+        
+        <div class="form-group">
+            <label for="companyName">Nome da Empresa</label>
+            <input type="text" id="companyName" value="Barbearia Exemplo" oninput="updateReport()">
+        </div>
+
+        <div class="form-group">
+            <label for="p-site">1. Infraestrutura Web & SEO</label>
+            <select id="p-site" onchange="updateReport()">
+                <option value="30">Site Próprio Otimizado (+30 pts)</option>
+                <option value="10">Apenas link de Agendamento (+10 pts)</option>
+                <option value="0">Nenhum Link na Ficha (0 pts)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="p-reviews">2. Volume de Avaliações</label>
+            <select id="p-reviews" onchange="updateReport()">
+                <option value="20">Mais de 200 avaliações (+20 pts)</option>
+                <option value="15">Entre 100 e 200 avaliações (+15 pts)</option>
+                <option value="10">Entre 50 e 100 avaliações (+10 pts)</option>
+                <option value="0">Menos de 50 avaliações (0 pts)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="p-responses">3. Resposta às Avaliações</label>
+            <select id="p-responses" onchange="updateReport()">
+                <option value="15">Responde a todos com Palavras-chave (+15 pts)</option>
+                <option value="5">Respostas Genéricas / Só Estrelas (+5 pts)</option>
+                <option value="0">Não Responde ou Ignora (+0 pts)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="p-visual">4. Experiência Visual & Tour 360°</label>
+            <select id="p-visual" onchange="updateReport()">
+                <option value="20">Fotos Recentes + Tour Virtual 360° (+20 pts)</option>
+                <option value="5">Apenas Fotos Padrão e Antigas (+5 pts)</option>
+                <option value="0">Sem Fotos / Imagens Ruins (+0 pts)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="p-posts">5. Frequência de Postagens</label>
+            <select id="p-posts" onchange="updateReport()">
+                <option value="15">Atualizações nos últimos 15 dias (+15 pts)</option>
+                <option value="0">Sem postagens recentes (0 pts)</option>
+            </select>
+        </div>
+
+        <button class="btn-generate" onclick="window.print()">
+            <i class="fa-solid fa-file-pdf"></i> Gerar PDF / Imprimir
+        </button>
+    </div>
+
+    <div id="report-view">
+        <div class="page-canvas">
+            
+            <div class="brand-header">
+                <div class="google-logo">
+                    <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
+                    <span style="font-family:'Product Sans', sans-serif; color:#5f6368; font-size:22px; margin-left:5px;">Business Profile</span>
+                </div>
+                <div class="report-tag">Análise Estratégica</div>
+            </div>
+
+            <h1 class="doc-title">Relatório de Desempenho Local</h1>
+            <div class="company-name-display" id="display-company-name">Barbearia Exemplo</div>
+
+            <div class="score-box">
+                <div class="score-info">
+                    <h3>Saúde e Otimização da Ficha</h3>
+                    <p>Mapeamento de posicionamento orgânico e conversão.</p>
+                </div>
+                <div class="score-number" id="display-score">0%</div>
+            </div>
+
+            <div class="criterion-row">
+                <div class="criterion-status" id="icon-site"></div>
+                <div class="criterion-text">
+                    <h4>Infraestrutura Web & Autoridade de Domínio</h4>
+                    <p id="desc-site"></p>
+                </div>
+            </div>
+
+            <div class="criterion-row">
+                <div class="criterion-status" id="icon-reviews"></div>
+                <div class="criterion-text">
+                    <h4>Atração & Volume de Prova Social</h4>
+                    <p id="desc-reviews"></p>
+                </div>
+            </div>
+
+            <div class="criterion-row">
+                <div class="criterion-status" id="icon-responses"></div>
+                <div class="criterion-text">
+                    <h4>Retenção & SEO em Respostas</h4>
+                    <p id="desc-responses"></p>
+                </div>
+            </div>
+
+            <div class="criterion-row">
+                <div class="criterion-status" id="icon-visual"></div>
+                <div class="criterion-text">
+                    <h4>Experiência Visual Imersiva (Tour Virtual 360°)</h4>
+                    <p id="desc-visual"></p>
+                </div>
+            </div>
+
+            <div class="criterion-row">
+                <div class="criterion-status" id="icon-posts"></div>
+                <div class="criterion-text">
+                    <h4>Relevância e Atividade Algorítmica</h4>
+                    <p id="desc-posts"></p>
+                </div>
+            </div>
+
+            <div class="veredict-box" id="veredict-container">
+                <h4 id="veredict-title">Diagnóstico Executivo</h4>
+                <p id="veredict-text"></p>
+            </div>
+
+            <div class="footer-signature">
+                <div>Emitido por: <strong>PapodeAlcance</strong></div>
+                <div>Contato Comercial WhatsApp: <strong>+55 41 99816-1160</strong></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function updateReport() {
+            // Pegar valores do input
+            const name = document.getElementById('companyName').value;
+            const siteScore = parseInt(document.getElementById('p-site').value);
+            const reviewsScore = parseInt(document.getElementById('p-reviews').value);
+            const responsesScore = parseInt(document.getElementById('p-responses').value);
+            const visualScore = parseInt(document.getElementById('p-visual').value);
+            const postsScore = parseInt(document.getElementById('p-posts').value);
+
+            // Calcular Nota Total
+            const totalScore = siteScore + reviewsScore + responsesScore + visualScore + postsScore;
+
+            // Atualizar elementos textuais simples
+            document.getElementById('display-company-name').innerText = name;
+            document.getElementById('display-score').innerText = totalScore + '%';
+
+            // Customizar cores do placar com base na nota
+            const scoreDisplay = document.getElementById('display-score');
+            if(totalScore < 40) scoreDisplay.style.color = 'var(--google-red)';
+            else if(totalScore <= 70) scoreDisplay.style.color = 'var(--google-yellow)';
+            else scoreDisplay.style.color = 'var(--google-green)';
+
+            // 1. Logica do Site
+            const iconSite = document.getElementById('icon-site');
+            const descSite = document.getElementById('desc-site');
+            if(siteScore === 30) {
+                iconSite.className = "criterion-status fa-solid fa-circle-check status-pass";
+                descSite.innerText = "Excelente. O link direciona para um site próprio otimizado com palavras-chave geo-localizadas, permitindo que o robô do Google faça a leitura completa e indexe o estabelecimento no topo das buscas regionais.";
+            } else if(siteScore === 10) {
+                iconSite.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
+                descSite.innerText = "Alerta Técnico. A ficha utiliza apenas link de plataformas de terceiros (Agendadores). Embora seja prático para quem já conhece o negócio, para o algoritmo do Google possui peso zero de SEO, fazendo com que a empresa perca relevância para quem busca o serviço no bairro.";
+            } else {
+                iconSite.className = "criterion-status fa-solid fa-circle-xmark status-fail";
+                descSite.innerText = "Crítico. A ausência de um link na ficha remove um dos principais pontos de ancoragem de autoridade do Google, gerando perda imediata de posições no ranking para concorrentes diretos.";
+            }
+
+            // 2. Logica de Avaliações
+            const iconReviews = document.getElementById('icon-reviews');
+            const descReviews = document.getElementById('desc-reviews');
+            if(reviewsScore === 20) {
+                iconReviews.className = "criterion-status fa-solid fa-circle-check status-pass";
+                descReviews.innerText = "Ficha Consolidada. Volume superior a 200 avaliações constrói uma barreira psicológica robusta de confiança contra a concorrência e acelera a conversão de novos usuários.";
+            } else if(reviewsScore === 15 || reviewsScore === 10) {
+                iconReviews.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
+                descReviews.innerText = "Volume Intermediário. O estabelecimento possui tração, porém permanece vulnerável ao crescimento acelerado de concorrentes vizinhos. Necessita de estratégia ativa de coleta de feedbacks.";
+            } else {
+                iconReviews.className = "criterion-status fa-solid fa-circle-xmark status-fail";
+                descReviews.innerText = "Alerta de Confiança. Menos de 50 avaliações enquadra o perfil em uma zona de risco onde o consumidor tende a escolher concorrentes com maior prova social documentada.";
+            }
+
+            // 3. Logica de Respostas
+            const iconResponses = document.getElementById('icon-responses');
+            const descResponses = document.getElementById('desc-responses');
+            if(responsesScore === 15) {
+                iconResponses.className = "criterion-status fa-solid fa-circle-check status-pass";
+                descResponses.innerText = "SEO Avançado. As respostas utilizam palavras-chave estratégicas combinadas com o nome da localidade, alimentando a inteligência de busca orgânica do mapa.";
+            } else if(responsesScore === 5) {
+                iconResponses.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
+                descResponses.innerText = "Oportunidade de Melhoria. Interações automáticas ou sem textos estratégicos perdem a oportunidade perfeita de introduzir palavras-chave que fariam a ficha subir de posição gratuitamente.";
+            } else {
+                iconResponses.className = "criterion-status fa-solid fa-circle-xmark status-fail";
+                descResponses.innerText = "Abandono Comercial. Avaliações ignoradas ou sem respostas geram sinalização negativa tanto para novos clientes quanto para a frequência de entrega do algoritmo do Google.";
+            }
+
+            // 4. Logica Visual
+            const iconVisual = document.getElementById('icon-visual');
+            const descVisual = document.getElementById('desc-visual');
+            if(visualScore === 20) {
+                iconVisual.className = "criterion-status fa-solid fa-circle-check status-pass";
+                descVisual.innerText = "Destaque Visual. A inclusão de imagens atualizadas e o Tour Virtual 360° aumentam o tempo de retenção do usuário na ficha, indicando ao Google que o espaço físico é legítimo, premium e confiável.";
+            } else if(visualScore === 5) {
+                iconVisual.className = "criterion-status fa-solid fa-circle-exclamation status-alert";
+                descVisual.innerText = "Imagens Comuns. O perfil exibe apenas fotos antigas ou amadoras. A falta de fotos profissionais e de um Tour 360° impede o cliente de experienciar o ambiente interno antes de ir ao local.";
+            } else {
+                iconVisual.className = "criterion-status fa-solid fa-circle-xmark status-fail";
+                descVisual.innerText = "Falta de Atrativos. Perfil sem fotos de qualidade ou sem controle editorial do proprietário afasta o consumidor e derruba drasticamente a taxa de cliques para agendamento.";
+            }
+
+            // 5. Logica de Posts
+            const iconPosts = document.getElementById('icon-posts');
+            const descPosts = document.getElementById('desc-posts');
+            if(postsScore === 15) {
+                iconPosts.className = "criterion-status fa-solid fa-circle-check status-pass";
+                descPosts.innerText = "Perfil Ativo. Postagens constantes na aba de novidades informam ao algoritmo que a empresa está aberta, ativa e gerando conteúdo relevante atualizado.";
+            } else {
+                iconPosts.className = "criterion-status fa-solid fa-circle-xmark status-fail";
+                descPosts.innerText = "Ficha Inativa. A ausência de atualizações recentes faz com que o algoritmo dê preferência para fichas movimentadas na região, derrubando o alcance orgânico da empresa.";
+            }
+
+            // REGRA DO VEREDITO FINAL TEXTUAL
+            const veredictBox = document.getElementById('veredict-container');
+            const veredictTitle = document.getElementById('veredict-title');
+            const veredictText = document.getElementById('veredict-text');
+
+            if(totalScore < 40) {
+                veredictBox.className = "veredict-box v-critical";
+                veredictTitle.innerText = "Diagnóstico: Saúde Crítica da Ficha (" + totalScore + "%)";
+                veredictText.innerText = "Atenção Corporativa. O perfil atual opera muito abaixo do potencial técnico ideal. A dependência de links de terceiros ou a falta de ativos estruturados como SEO em respostas e atualizações estão ocultando o negócio nas buscas. É necessária uma intervenção imediata para reestruturação técnica antes que o posicionamento na região seja totalmente dominado pela concorrência.";
+            } else if(totalScore <= 70) {
+                veredictBox.className = "veredict-box v-alert";
+                veredictTitle.innerText = "Diagnóstico: Alerta de Otimização (" + totalScore + "%)";
+                veredictText.innerText = "Status Estável, porém Vulnerável. O negócio possui ótimos alicerces, mas esbarra em gargalos técnicos de conversão e SEO Local, como a falta de palavras-chave estruturadas em respostas ou a ausência de uma experiência imersiva em 360°. Pequenos ajustes estratégicos na ficha e a introdução de uma infraestrutura web correta serão suficientes para disparar o número de agendamentos diretos.";
+            } else {
+                veredictBox.className = "veredict-box v-good";
+                veredictTitle.innerText = "Diagnóstico: Excelente Desempenho (" + totalScore + "%)";
+                veredictText.innerText = "Parabéns! A estrutura do perfil demonstra alto profissionalismo e conformidade com as boas práticas exigidas pelo Google Business Profile. O foco agora deve ser manter a consistência contínua e iniciar estratégias avançadas de escala para blindar o topo do ranking contra novos entrantes.";
+            }
+        }
+
+        // Executar inicialização automática ao abrir a página
+        window.onload = updateReport;
+    </script>
+</body>
+</html>
