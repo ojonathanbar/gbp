@@ -18,6 +18,7 @@
             --gray-dark: #202124;
             --gray-light: #f8f9fa;
             --border-color: #dadce0;
+            --agency-dark: #17191c;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -114,11 +115,75 @@
             background-color: #fff;
             width: 800px;
             min-height: 1120px;
-            padding: 60px;
+            padding: 0 60px 60px 60px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             position: relative;
             display: flex;
             flex-direction: column;
+        }
+
+        /* CABEÇALHO ELEGANTE PAPO DE ALCANCE */
+        .agency-header {
+            background: linear-gradient(135deg, var(--agency-dark) 0%, #3c4043 100%);
+            color: white;
+            padding: 35px 60px;
+            margin-left: -60px;
+            margin-right: -60px;
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--google-blue);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .agency-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-icon {
+            background-color: rgba(255,255,255,0.1);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            font-size: 22px;
+            color: #6fb2ff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .brand-text h2 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .brand-text span {
+            font-size: 13px;
+            color: #bdc1c6;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        .agency-contact {
+            text-align: right;
+            font-size: 13px;
+            color: #e8eaed;
+            line-height: 1.6;
+        }
+        
+        .agency-contact i {
+            color: #6fb2ff;
+            margin-right: 5px;
         }
 
         /* ELEMENTOS DO LAUDO GOOGLE STYLE */
@@ -126,15 +191,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--gray-light);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .google-logo {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 500;
             letter-spacing: -1px;
+            color: #5f6368;
         }
         .g-b { color: var(--google-blue); }
         .g-r { color: var(--google-red); }
@@ -149,6 +213,8 @@
             font-weight: 500;
             font-size: 12px;
             text-transform: uppercase;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .doc-title {
@@ -176,6 +242,8 @@
             justify-content: space-between;
             margin-bottom: 30px;
             border: 1px solid var(--border-color);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .score-info h3 { font-size: 18px; margin-bottom: 5px; }
@@ -218,6 +286,8 @@
             padding: 20px;
             border-radius: 6px;
             margin-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
         .v-critical { background-color: rgba(234, 67, 53, 0.08); border-left: 5px solid var(--google-red); }
         .v-alert { background-color: rgba(251, 188, 5, 0.12); border-left: 5px solid var(--google-yellow); }
@@ -231,9 +301,10 @@
             border-top: 1px solid var(--border-color);
             padding-top: 15px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             font-size: 13px;
             color: #70757a;
+            text-align: center;
         }
 
         .footer-signature strong { color: var(--gray-dark); }
@@ -244,7 +315,12 @@
             #control-panel { display: none; }
             #report-view { margin-left: 0; padding: 0; background-color: #fff; width: 100%; display: block; }
             .page-canvas { box-shadow: none; padding: 0; width: 100%; height: auto; min-height: auto; }
-            @page { size: A4; margin: 15mm; }
+            .agency-header { padding: 30px 40px; margin-left: 0; margin-right: 0; margin-top: 0; border-radius: 0; }
+            @page { size: A4; margin: 0; } /* Margem 0 para o header encostar nas bordas */
+            .brand-header, .doc-title, .company-name-display, .score-box, .criterion-row, .veredict-box, .footer-signature {
+                padding-left: 40px;
+                padding-right: 40px;
+            }
         }
     </style>
 </head>
@@ -332,15 +408,31 @@
     <div id="report-view">
         <div class="page-canvas">
             
-            <div class="brand-header">
-                <div class="google-logo">
-                    <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
-                    <span style="font-family:'Product Sans', sans-serif; color:#5f6368; font-size:22px; margin-left:5px;">Business Profile</span>
+            <div class="agency-header">
+                <div class="agency-brand">
+                    <div class="brand-icon">
+                        <i class="fa-solid fa-magnifying-glass-location"></i>
+                    </div>
+                    <div class="brand-text">
+                        <h2>Papo de Alcance</h2>
+                        <span>Consultoria SEO Local</span>
+                    </div>
                 </div>
-                <div class="report-tag">Auditoria Técnica de Perfil</div>
+                <div class="agency-contact">
+                    <div><i class="fa-brands fa-whatsapp"></i> +55 41 99816-1160</div>
+                    <div style="margin-top: 3px;"><i class="fa-regular fa-envelope"></i> Relatório Executivo</div>
+                </div>
             </div>
 
-            <h1 class="doc-title">Relatório de Desempenho Local</h1>
+            <div class="brand-header">
+                <div class="google-logo">
+                    Auditoria com base em: <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
+                    <span style="font-family:'Product Sans', sans-serif;">Business Profile</span>
+                </div>
+                <div class="report-tag">Análise Técnica</div>
+            </div>
+
+            <h1 class="doc-title">Laudo de Desempenho no Mapa</h1>
             <div class="company-name-display" id="display-company-name">Barbearia Exemplo</div>
 
             <div class="score-box">
@@ -413,8 +505,7 @@
             </div>
 
             <div class="footer-signature">
-                <div>Consultoria SEO Local: <strong>PapodeAlcance</strong></div>
-                <div>Contato Direto (WhatsApp): <strong>+55 41 99816-1160</strong></div>
+                Este laudo foi gerado tecnicamente e revisado por <strong>&nbsp;Papo de Alcance - Consultoria Especializada</strong>.
             </div>
 
         </div>
@@ -422,7 +513,6 @@
 
     <script>
         function updateReport() {
-            // Pegar valores
             const name = document.getElementById('companyName').value;
             const siteScore = parseInt(document.getElementById('p-site').value);
             const whatsScore = parseInt(document.getElementById('p-whats').value);
@@ -432,10 +522,8 @@
             const visualScore = parseInt(document.getElementById('p-visual').value);
             const postsScore = parseInt(document.getElementById('p-posts').value);
 
-            // Calcular Total
             const totalScore = siteScore + whatsScore + starsScore + reviewsScore + responsesScore + visualScore + postsScore;
 
-            // Atualizar Score Visual
             document.getElementById('display-company-name').innerText = name;
             document.getElementById('display-score').innerText = totalScore + '%';
 
@@ -444,7 +532,7 @@
             else if(totalScore <= 80) scoreDisplay.style.color = 'var(--google-yellow)';
             else scoreDisplay.style.color = 'var(--google-green)';
 
-            // 1. Logica do Site (20 pts)
+            // 1. Site
             const iconSite = document.getElementById('icon-site');
             const descSite = document.getElementById('desc-site');
             if(siteScore === 20) {
@@ -458,7 +546,7 @@
                 descSite.innerText = "Crítico. A ausência de link remove o principal pilar de autoridade técnica exigido pelo Google.";
             }
 
-            // 2. Lógica do WhatsApp (10 pts)
+            // 2. WhatsApp
             const iconWhats = document.getElementById('icon-whats');
             const descWhats = document.getElementById('desc-whats');
             if(whatsScore === 10) {
@@ -472,7 +560,7 @@
                 descWhats.innerText = "Incomunicável. Falha crítica nos canais rápidos de atendimento na ficha.";
             }
 
-            // 3. Lógica das Estrelas (15 pts)
+            // 3. Estrelas
             const iconStars = document.getElementById('icon-stars');
             const descStars = document.getElementById('desc-stars');
             if(starsScore === 15) {
@@ -489,7 +577,7 @@
                 descStars.innerText = "Risco de Rejeição. Uma média abaixo de 4.0 afasta ativamente novos clientes e demanda plano de ação emergencial de Customer Success.";
             }
 
-            // 4. Lógica de Avaliações (Volume) (15 pts)
+            // 4. Avaliações
             const iconReviews = document.getElementById('icon-reviews');
             const descReviews = document.getElementById('desc-reviews');
             if(reviewsScore === 15) {
@@ -503,7 +591,7 @@
                 descReviews.innerText = "Baixa Tração. O baixo número de avaliações falha em transmitir a autoridade necessária para atrair novos visitantes do mapa.";
             }
 
-            // 5. Lógica de Respostas (15 pts)
+            // 5. Respostas
             const iconResponses = document.getElementById('icon-responses');
             const descResponses = document.getElementById('desc-responses');
             if(responsesScore === 15) {
@@ -520,7 +608,7 @@
                 descResponses.innerText = "Abandono. Ignorar o feedback do cliente é penalizado pelo algoritmo do Google e destrói o engajamento.";
             }
 
-            // 6. Lógica Visual 360 (15 pts)
+            // 6. Visual 360
             const iconVisual = document.getElementById('icon-visual');
             const descVisual = document.getElementById('desc-visual');
             if(visualScore === 15) {
@@ -537,7 +625,7 @@
                 descVisual.innerText = "Desatualização Crítica. Falta de apelo visual gera forte rejeição.";
             }
 
-            // 7. Lógica de Posts (10 pts)
+            // 7. Posts
             const iconPosts = document.getElementById('icon-posts');
             const descPosts = document.getElementById('desc-posts');
             if(postsScore === 10) {
@@ -548,7 +636,7 @@
                 descPosts.innerText = "Ficha Inativa. A aba de atualizações abandonada faz o Google priorizar fichas com maior frequência de postagem na mesma região.";
             }
 
-            // REGRA DO VEREDITO FINAL
+            // Veredito
             const veredictBox = document.getElementById('veredict-container');
             const veredictTitle = document.getElementById('veredict-title');
             const veredictText = document.getElementById('veredict-text');
@@ -568,7 +656,6 @@
             }
         }
 
-        // Executar no carregamento
         window.onload = updateReport;
     </script>
 </body>
